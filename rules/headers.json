@@ -1,0 +1,36 @@
+{
+  "Name": "InjectHeaderRule",
+  "Priority": 0,
+  "Action": {
+    "Allow": {
+      "CustomRequestHandling": {
+        "InsertHeaders": [
+          {
+            "Name": "x-verified",
+            "Value": "waf-tagged"
+          }
+        ]
+      }
+    }
+  },
+  "VisibilityConfig": {
+    "SampledRequestsEnabled": true,
+    "CloudWatchMetricsEnabled": true,
+    "MetricName": "InjectHeaderRule"
+  },
+  "Statement": {
+    "ByteMatchStatement": {
+      "FieldToMatch": {
+        "UriPath": {}
+      },
+      "PositionalConstraint": "STARTS_WITH",
+      "SearchString": "/",
+      "TextTransformations": [
+        {
+          "Type": "NONE",
+          "Priority": 0
+        }
+      ]
+    }
+  }
+}
